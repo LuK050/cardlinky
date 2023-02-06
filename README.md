@@ -1,2 +1,2 @@
 # cardlinky
-Python wrapper for cardlink
+_In deep development..._
