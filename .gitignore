@@ -1,3 +1,4 @@
 cardlinky.iml
-.idea
+/.idea
 main.py
+/venv
