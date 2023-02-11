@@ -31,12 +31,12 @@ print_bill_url("YOUR-TOKEN", "YOUR-SHOP-ID", 100.0)
 from cardlinky import Cardlinky
 
 
-def print_bill_status(token: str, id: str) -> None:
+def print_bill_status(token: str, bill_id: str) -> None:
     # Creating an instance of the class
     cardlinky = Cardlinky(token)
 
     # Create a bill and save it
-    bill_status = cardlinky.get_bill_status(id=id)
+    bill_status = cardlinky.get_bill_status(bill_id=id)
 
     # Getting a status and printing
     print(bill_status.status)
