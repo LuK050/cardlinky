@@ -1,1 +1,1 @@
-from cardlinky import *
+from cardlinky.cardlinky import *
