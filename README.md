@@ -36,7 +36,7 @@ def print_bill_status(token: str, bill_id: str) -> None:
     cardlinky = Cardlinky(token)
 
     # Create a bill and save it
-    bill_status = cardlinky.get_bill_status(bill_id=id)
+    bill_status = cardlinky.get_bill_status(bill_id=bill_id)
 
     # Getting a status and printing
     print(bill_status.status)
