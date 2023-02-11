@@ -293,8 +293,8 @@ class Cardlinky:
 
         response = self._post("payout/regular/create", {
             "amount": amount,
-            "currency": currency,
-            "account_type": account_type,
+            "currency": currency.name,
+            "account_type": account_type.name,
             "account_identifier": account_identifier,
             "card_holder": card_holder,
         })
