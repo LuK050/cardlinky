@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cardlinky"
 version = "1.0"
-description = "A Python wrapper for the CARDLINK api"
+description = "Wrapper for the CARDLINK API in Python"
 authors = ["LuK050 <volychevk@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -10,6 +10,7 @@ repository = "https://github.com/LuK050/cardlinky"
 documentation = "https://cardlink.link/reference/api"
 keywords = ["cardlink", "api"]
 packages = [{include = "cardlinky"}]
+
 
 [tool.poetry.dependencies]
 python = "^3.8"
