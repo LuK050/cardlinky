@@ -2,7 +2,7 @@ from enum import StrEnum
 
 
 class AccountType(StrEnum):
-    CREDIT_CARD: str = "credit_card"
+    CREDIT_CARD: str = "CREDIT_CARD"
 
     @classmethod
     def from_name(cls, name: str):
