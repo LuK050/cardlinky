@@ -9,6 +9,3 @@ class BillType(Enum):
     """
     NORMAL: str = "NORMAL"
     MULTI: str = "MULTI"
-
-
-

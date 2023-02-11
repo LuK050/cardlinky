@@ -5,6 +5,3 @@ class Currency(Enum):
     USD: str = "USD"
     RUB: str = "RUB"
     EUR: str = "EUR"
-
-
-
