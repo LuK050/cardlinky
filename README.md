@@ -1,7 +1,7 @@
 # cardlinky
-<img src="https://img.shields.io/github/license/LUK050/cardlinky?style=flat-square"> <img src="https://img.shields.io/bitbucket/issues/LuK050/cardlinky?style=flat-square">
+<a href="https://pypi.org/project/cardlinky/"><img src="https://img.shields.io/pypi/v/cardlinky?style=flat-square"></a> <img src="https://img.shields.io/pypi/pyversions/cardlinky?style=flat-square"> 
 
-📘 [Official documentation](https://cardlink.link/reference/api)
+[📘 Official documentation](https://cardlink.link/reference/api)
 
 ## Usage
 First of all, you need to create a store in the system https://cardlink.link/. After confirmation, you will be able to get a token and a shop ID to work with the API.
@@ -31,12 +31,12 @@ print_bill_url("YOUR-TOKEN", "YOUR-SHOP-ID", 100.0)
 from cardlinky import Cardlinky
 
 
-def print_bill_status(token: str, id: str) -> None:
+def print_bill_status(token: str, bill_id: str) -> None:
     # Creating an instance of the class
     cardlinky = Cardlinky(token)
 
     # Create a bill and save it
-    bill_status = cardlinky.get_bill_status(id=id)
+    bill_status = cardlinky.get_bill_status(bill_id=id)
 
     # Getting a status and printing
     print(bill_status.status)
@@ -45,3 +45,12 @@ def print_bill_status(token: str, id: str) -> None:
 print_bill_status("YOUR-TOKEN", "BILL-ID")
 # NEW
 ```
+
+## Installation
+```sh
+pip install cardlinky
+```
+### Dependencies:
+Package  | Version
+-------- | ----------
+`requests` | `>=2.28.2` 
