@@ -4,7 +4,7 @@
 [📘 Official documentation](https://cardlink.link/reference/api)
 
 ## Usage
-First of all, you need to create a store in the system https://cardlink.link/. After confirmation, you will be able to get a token and a shop ID to work with the API.
+Firstly, you need to create an account and а shop in https://cardlink.link/. After confirmation, you will be able to get a token and a shop ID to work with the API.
 
 ### Creating a bill and getting a payment link:
 ```py
