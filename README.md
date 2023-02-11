@@ -45,3 +45,12 @@ def print_bill_status(token: str, id: str) -> None:
 print_bill_status("YOUR-TOKEN", "BILL-ID")
 # NEW
 ```
+
+## Installation
+```sh
+pip install cardlinky
+```
+### Dependencies:
+Package  | Version
+-------- | ----------
+`requests` | `>=2.28.2` 
