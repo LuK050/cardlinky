@@ -43,7 +43,7 @@ def print_bill_status(token: str, bill_id: str) -> None:
 
 
 print_bill_status("YOUR-TOKEN", "BILL-ID")
-# NEW
+# Status.NEW
 ```
 
 ## Installation
