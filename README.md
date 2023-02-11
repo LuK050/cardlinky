@@ -1,7 +1,7 @@
 # cardlinky
 <a href="https://pypi.org/project/cardlinky/"><img src="https://img.shields.io/pypi/v/cardlinky?style=flat-square"></a> <img src="https://img.shields.io/pypi/pyversions/cardlinky?style=flat-square"> 
 
-📘 [Official documentation](https://cardlink.link/reference/api)
+[📘 Official documentation](https://cardlink.link/reference/api)
 
 ## Usage
 First of all, you need to create a store in the system https://cardlink.link/. After confirmation, you will be able to get a token and a shop ID to work with the API.
