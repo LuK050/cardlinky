@@ -1,4 +1,4 @@
-from enum import StrEnum
+from cardlinky.types.enums.enum import StrEnum
 
 
 class BillType(StrEnum):
@@ -9,14 +9,6 @@ class BillType(StrEnum):
     """
     NORMAL: str = "NORMAL"
     MULTI: str = "MULTI"
-
-    @classmethod
-    def from_name(cls, name: str):
-        name = name.upper()
-        for i in BillType:
-            if i == name:
-                return i
-        return None
 
 
 

@@ -47,4 +47,3 @@ class PayoutStatus:
     currency: Currency
     created_at: datetime.datetime
     success: bool
-

@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "cardlinky"
+version = "1.1"
+description = "Wrapper for the Cardlink API in Python"
+authors = ["LuK050 <volychevk@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/LuK050/cardlinky"
+repository = "https://github.com/LuK050/cardlinky"
+documentation = "https://cardlink.link/reference/api"
+keywords = ["cardlink", "api"]
+packages = [{include = "cardlinky"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.28.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

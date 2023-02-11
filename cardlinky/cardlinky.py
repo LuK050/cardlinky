@@ -31,14 +31,8 @@ class Cardlinky:
             "Authorization": f"Bearer {self.token}"
         }
 
-    def _get(self, path: str, data: MutableMapping[str, Union[str, int, bool]]) -> MutableMapping[str, Any]:
-        response = requests.get(
-            url=self.base_url + path,
-            headers=self.headers,
-            json=data,
-        )
-        json = response.json()
-
+    @staticmethod
+    def __handle_error(json: Mapping[str, Any]) -> None:
         if not json["success"]:
             if "errors" in tuple(json.keys()):
                 error = tuple(json["errors"].values())[0][0]
@@ -52,6 +46,15 @@ class Cardlinky:
                 if json["message"] in tuple(exceptions.keys()):
                     raise exceptions[json["message"]]
                 raise ValueError(error)
+
+    def _get(self, path: str, data: MutableMapping[str, Any]) -> MutableMapping[str, Any]:
+        response = requests.get(
+            url=self.base_url + path,
+            headers=self.headers,
+            json=data,
+        )
+        json = response.json()
+        self.__handle_error(json)
 
         return json
 
@@ -62,25 +65,12 @@ class Cardlinky:
             json=data,
         )
         json = response.json()
-
-        if not json["success"]:
-            if "errors" in tuple(json.keys()):
-                error = tuple(json["errors"].values())[0][0]
-
-                if error in tuple(exceptions.keys()):
-                    raise exceptions[tuple(json["errors"].values())[0][0]]
-                raise ValueError(error)
-            else:
-                error = json["message"]
-
-                if json["message"] in tuple(exceptions.keys()):
-                    raise exceptions[json["message"]]
-                raise ValueError(error)
+        self.__handle_error(json)
 
         return json
 
     def create_bill(self, amount: float, shop_id: str, order_id: Optional[str] = None,
-                    description: Optional[str] = None, type: Optional[BillType] = None,
+                    description: Optional[str] = None, bill_type: Optional[BillType] = None,
                     currency_in: Optional[Currency] = None, custom: Optional[str] = None,
                     name: Optional[str] = None) -> BillCreate:
         """
@@ -91,7 +81,7 @@ class Cardlinky:
         :param shop_id: str - Unique shop ID
         :param order_id: Optional[str] - Unique order ID. Will be sent within Postback
         :param description: Optional[str] - Description of payment
-        :param type: Optional[enums.BillType] - Type of payment link shows how many payments it could receive
+        :param bill_type: Optional[enums.BillType] - Type of payment link shows how many payments it could receive
         :param currency_in: Optional[enums.Currency] - Currency that customer sees during payment process
         :param custom: str - You can send any string value in this field, and it will be returned within postback
         :param name: str - Please specify the purpose of the payment. It will be shown on the payment form
@@ -105,24 +95,24 @@ class Cardlinky:
             "shop_id": shop_id,
             "custom": custom,
             "name": name,
-        } | ({"type": type.value} if type is not None else {})
+        } | ({"type": bill_type.value} if bill_type is not None else {})
                               | ({"type": currency_in.value} if currency_in is not None else {}))
 
         return BillCreate(**response)
 
-    def toggle_bill_activity(self, id: str, active: bool) -> BillToggleActivity:
+    def toggle_bill_activity(self, bill_id: str, active: bool) -> BillToggleActivity:
         """
         You can deactivate and activate bills using this APO.
         Use your merchant token for the authentication.
         https://cardlink.link/en/reference/api#bill-toggle
 
-        :param id: str - Unique bill id
+        :param bill_id: str - Unique bill id
         :param active: bool - Deactivate or activate bill
         :return: models.BillToggleActivity
         """
 
         response = self._post("bill/toggle_activity", {
-            "id": id,
+            "id": bill_id,
             "active": int(active),
         })
         response["status"] = Status.from_name(response["status"])
@@ -132,17 +122,17 @@ class Cardlinky:
 
         return BillToggleActivity(**response)
 
-    def get_bill_payments(self, id: str) -> List[Payment]:
+    def get_bill_payments(self, bill_id: str) -> List[Payment]:
         """
         Get information about payments for one bill.
         https://cardlink.link/en/reference/api#bill-payments
 
-        :param id: str - Unique bill id
+        :param bill_id: str - Unique bill id
         :return: List[models.Payment]
         """
 
         response = self._get("bill/payments", {
-            "id": id,
+            "id": bill_id,
         })
 
         for i, payment in enumerate(response["data"]):
@@ -180,17 +170,17 @@ class Cardlinky:
 
         return response["data"]
 
-    def get_bill_status(self, id: str) -> BillStatus:
+    def get_bill_status(self, bill_id: str) -> BillStatus:
         """
         Get bill info and status.
         https://cardlink.link/en/reference/api#bill-status
 
-        :param id: str - Unique bill ID
+        :param bill_id: str - Unique bill ID
         :return: models.BillStatus
         """
 
         response = self._get("bill/status", {
-            "id": id,
+            "id": bill_id,
         })
         response["status"] = Status.from_name(response["status"])
         response["type"] = BillType.from_name(response["type"])
@@ -225,17 +215,17 @@ class Cardlinky:
 
         return response["data"]
 
-    def get_payment_status(self, id: str) -> PaymentStatus:
+    def get_payment_status(self, payment_id: str) -> PaymentStatus:
         """
         Get status of payment.
         https://cardlink.link/en/reference/api#payment-status
 
-        :param id: str - Unique payment ID
+        :param payment_id: str - Unique payment ID
         :return: models.PaymentStatus
         """
 
         response = self._get("payment/status", {
-            "id": id,
+            "id": payment_id,
         })
         response["status"] = Status.from_name(response["status"])
         response["created_at"] = datetime.datetime.strptime(response["created_at"], "%Y-%m-%d %H:%M:%S")
@@ -340,17 +330,17 @@ class Cardlinky:
 
         return response["data"]
 
-    def get_payout_status(self, id: str) -> PayoutStatus:
+    def get_payout_status(self, payout_id: str) -> PayoutStatus:
         """
         You can request a status of any payout operation.
         https://cardlink.link/en/reference/api#payout-status
 
-        :param id: str - Unique payout ID
+        :param payout_id: str - Unique payout ID
         :return: PayoutStatus
         """
 
         response = self._get("payout/status", {
-            "id": id,
+            "id": payout_id,
         })
         response["status"] = Status.from_name(response["status"])
         response["currency"] = Currency.from_name(response["currency_in"])

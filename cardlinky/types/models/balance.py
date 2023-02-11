@@ -16,4 +16,3 @@ class Balance:
     balance_available: float
     balance_locked: float
     balance_hold: float
-

@@ -120,8 +120,3 @@ exceptions = {
     "api:error.payout_not_found": PayoutNotFound("Payout is not found"),
     "api:error.too_many_payouts": TooManyPayouts("You are trying to request to many payouts. Maximum payouts for one request is 1000"),
 }
-
-
-
-
-

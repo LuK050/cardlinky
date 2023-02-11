@@ -13,7 +13,8 @@ class Bill:
     :param status: enums.Status - Bill status
     :param active: boll - Is bill active
     :param amount: float - Bill amount
-    :param type: enums.BillType - Bill type. 'Normal' type accepts only one payment. 'Multi' type accepts unlimited number of payments.
+    :param type: enums.BillType - Bill type. 'Normal' type accepts only one payment.
+        'Multi' type accepts unlimited number of payments.
     :param currency_in: enums.Currency - Payment currency
     :param created_at: datetime.datetime - Creation date and time
     """
@@ -49,7 +50,8 @@ class BillStatus:
     :param status: enums.Status - Bill status
     :param active: boll - Is bill active
     :param amount: float - Bill amount
-    :param type: enums.BillType - Bill type. 'Normal' type accepts only one payment. 'Multi' type accepts unlimited number of payments
+    :param type: enums.BillType - Bill type. 'Normal' type accepts only one payment.
+        'Multi' type accepts unlimited number of payments
     :param currency_in: enums.Currency - Payment currency
     :param created_at: datetime.datetime - Creation date and time
     :param created_at: datetime.datetime - Creation date and time
@@ -73,7 +75,8 @@ class BillToggleActivity:
     :param active: bool - Bill activity flag
     :param status: enums.Status - Bill status
     :param amount: float - Bill amount
-    :param type: enums.BillType - Type of bill. NORMAL is for onetime payments and MULTI is for infinity number of payments
+    :param type: enums.BillType - Type of bill. NORMAL is for onetime payments and
+        MULTI is for infinity number of payments
     :param created_at: datetime.datetime - Bill creation date and time
     :param currency_in: enums.Currency - Currency
     :param success: bool - This flag indicates status of request

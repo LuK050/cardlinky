@@ -60,4 +60,3 @@ class PaymentStatus:
     from_card: str
     created_at: datetime.datetime
     success: bool
-

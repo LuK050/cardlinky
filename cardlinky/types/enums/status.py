@@ -1,4 +1,4 @@
-from enum import StrEnum
+from cardlinky.types.enums.enum import StrEnum
 
 
 class Status(StrEnum):
@@ -11,14 +11,3 @@ class Status(StrEnum):
     FAIL: str = "FAIL"
     ERROR: str = "ERROR"
     DECLINED: str = "DECLINED"
-
-    @classmethod
-    def from_name(cls, name: str):
-        name = name.upper()
-        for i in Status:
-            if i == name:
-                return i
-        return None
-
-
-
