@@ -1,5 +1,5 @@
 # cardlinky
-<img src="https://img.shields.io/github/license/LUK050/cardlinky?style=flat-square"> <img src="https://img.shields.io/bitbucket/issues/LuK050/cardlinky?style=flat-square">
+<img src="https://img.shields.io/github/license/LUK050/cardlinky?style=flat-square"> <img src="https://img.shields.io/bitbucket/issues/LuK050/cardlinky?style=flat-square"> <img src="https://img.shields.io/pypi/dd/cardlinky?style=flat-square">
 
 📘 [Official documentation](https://cardlink.link/reference/api)
 
