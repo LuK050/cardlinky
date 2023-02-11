@@ -1,7 +1,7 @@
-from cardlinky.types.enums.enum import StrEnum
+from cardlinky.types.enums.enum import Enum
 
 
-class AccountType(StrEnum):
+class AccountType(Enum):
     CREDIT_CARD: str = "CREDIT_CARD"
 
 

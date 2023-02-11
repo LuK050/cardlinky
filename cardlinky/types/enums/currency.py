@@ -1,7 +1,7 @@
-from cardlinky.types.enums.enum import StrEnum
+from cardlinky.types.enums.enum import Enum
 
 
-class Currency(StrEnum):
+class Currency(Enum):
     USD: str = "USD"
     RUB: str = "RUB"
     EUR: str = "EUR"

@@ -95,8 +95,8 @@ class Cardlinky:
             "shop_id": shop_id,
             "custom": custom,
             "name": name,
-        } | ({"type": bill_type.value} if bill_type is not None else {})
-                              | ({"type": currency_in.value} if currency_in is not None else {}))
+        } | ({"type": bill_type.name} if bill_type is not None else {})
+                              | ({"currency_in": currency_in.name} if currency_in is not None else {}))
 
         return BillCreate(**response)
 
@@ -115,10 +115,10 @@ class Cardlinky:
             "id": bill_id,
             "active": int(active),
         })
-        response["status"] = Status.from_name(response["status"])
-        response["type"] = BillType.from_name(response["type"])
+        response["status"] = Status.from_name(response["status"]).name
+        response["type"] = BillType.from_name(response["type"]).name
         response["created_at"] = datetime.datetime.strptime(response["created_at"], "%Y-%m-%d %H:%M:%S")
-        response["currency_in"] = Currency.from_name(response["currency_in"])
+        response["currency_in"] = Currency.from_name(response["currency_in"]).name
 
         return BillToggleActivity(**response)
 
@@ -136,10 +136,10 @@ class Cardlinky:
         })
 
         for i, payment in enumerate(response["data"]):
-            payment["status"] = Status.from_name(payment["status"])
+            payment["status"] = Status.from_name(payment["status"]).name
             payment["created_at"] = datetime.datetime.strptime(payment["created_at"], "%Y-%m-%d %H:%M:%S")
-            payment["currency_in"] = Currency.from_name(payment["currency_in"])
-            payment["account_currency_code"] = Currency.from_name(payment["account_currency_code"])
+            payment["currency_in"] = Currency.from_name(payment["currency_in"]).name
+            payment["account_currency_code"] = Currency.from_name(payment["account_currency_code"]).name
             response["data"][i] = Payment(**payment)
 
         return response["data"]
@@ -162,10 +162,10 @@ class Cardlinky:
                              | ({"finish_date": finish_date.strftime("%Y-%m-%d")} if finish_date is not None else {}))
 
         for i, bill in enumerate(response["data"]):
-            bill["status"] = Status.from_name(bill["status"])
-            bill["type"] = BillType.from_name(bill["type"])
+            bill["status"] = Status.from_name(bill["status"]).name
+            bill["type"] = BillType.from_name(bill["type"]).name
             bill["created_at"] = datetime.datetime.strptime(bill["created_at"], "%Y-%m-%d %H:%M:%S")
-            bill["currency_in"] = Currency.from_name(bill["currency_in"])
+            bill["currency_in"] = Currency.from_name(bill["currency_in"]).name
             response["data"][i] = Bill(**bill)
 
         return response["data"]
@@ -182,10 +182,10 @@ class Cardlinky:
         response = self._get("bill/status", {
             "id": bill_id,
         })
-        response["status"] = Status.from_name(response["status"])
-        response["type"] = BillType.from_name(response["type"])
+        response["status"] = Status.from_name(response["status"]).name
+        response["type"] = BillType.from_name(response["type"]).name
         response["created_at"] = datetime.datetime.strptime(response["created_at"], "%Y-%m-%d %H:%M:%S")
-        response["currency_in"] = Currency.from_name(response["currency_in"])
+        response["currency_in"] = Currency.from_name(response["currency_in"]).name
 
         return BillStatus(**response)
 
@@ -207,10 +207,10 @@ class Cardlinky:
                              | ({"finish_date": finish_date.strftime("%Y-%m-%d")} if finish_date is not None else {}))
 
         for i, payment in enumerate(response["data"]):
-            payment["status"] = Status.from_name(payment["status"])
+            payment["status"] = Status.from_name(payment["status"]).name
             payment["created_at"] = datetime.datetime.strptime(payment["created_at"], "%Y-%m-%d %H:%M:%S")
-            payment["currency_in"] = Currency.from_name(payment["currency_in"])
-            payment["account_currency_code"] = Currency.from_name(payment["account_currency_code"])
+            payment["currency_in"] = Currency.from_name(payment["currency_in"]).name
+            payment["account_currency_code"] = Currency.from_name(payment["account_currency_code"]).name
             response["data"][i] = Payment(**payment)
 
         return response["data"]
@@ -227,9 +227,9 @@ class Cardlinky:
         response = self._get("payment/status", {
             "id": payment_id,
         })
-        response["status"] = Status.from_name(response["status"])
+        response["status"] = Status.from_name(response["status"]).name
         response["created_at"] = datetime.datetime.strptime(response["created_at"], "%Y-%m-%d %H:%M:%S")
-        response["currency_in"] = Currency.from_name(response["currency_in"])
+        response["currency_in"] = Currency.from_name(response["currency_in"]).name
 
         return PaymentStatus(**response)
 
@@ -245,7 +245,7 @@ class Cardlinky:
         response = self._get("merchant/balance", {})
 
         for i, balance in enumerate(response["balances"]):
-            balance["currency"] = Currency.from_name(balance["currency"])
+            balance["currency"] = Currency.from_name(balance["currency"]).name
             response["balances"][i] = Balance(**balance)
 
         return response["balances"]
@@ -268,8 +268,8 @@ class Cardlinky:
         })
 
         for i, payout in enumerate(response["data"]):
-            payout["payout"] = Status.from_name(payout["payout"])
-            payout["currency"] = Currency.from_name(payout["currency"])
+            payout["payout"] = Status.from_name(payout["payout"]).name
+            payout["currency"] = Currency.from_name(payout["currency"]).name
             payout["created_at"] = datetime.datetime.strptime(payout["created_at"], "%Y-%m-%d %H:%M:%S")
             response["balances"][i] = Balance(**payout)
 
@@ -300,8 +300,8 @@ class Cardlinky:
         })
 
         for i, payout in enumerate(response["data"]):
-            payout["payout"] = Status.from_name(payout["payout"])
-            payout["currency"] = Currency.from_name(payout["currency"])
+            payout["payout"] = Status.from_name(payout["payout"]).name
+            payout["currency"] = Currency.from_name(payout["currency"]).name
             payout["created_at"] = datetime.datetime.strptime(payout["created_at"], "%Y-%m-%d %H:%M:%S")
             response["balances"][i] = Balance(**payout)
 
@@ -323,8 +323,8 @@ class Cardlinky:
                              | ({"finish_date": finish_date.strftime("%Y-%m-%d")} if finish_date is not None else {}))
 
         for i, payout in enumerate(response["data"]):
-            payout["payout"] = Status.from_name(payout["payout"])
-            payout["currency"] = Currency.from_name(payout["currency"])
+            payout["payout"] = Status.from_name(payout["payout"]).name
+            payout["currency"] = Currency.from_name(payout["currency"]).name
             payout["created_at"] = datetime.datetime.strptime(payout["created_at"], "%Y-%m-%d %H:%M:%S")
             response["balances"][i] = Balance(**payout)
 
@@ -342,8 +342,8 @@ class Cardlinky:
         response = self._get("payout/status", {
             "id": payout_id,
         })
-        response["status"] = Status.from_name(response["status"])
-        response["currency"] = Currency.from_name(response["currency_in"])
+        response["status"] = Status.from_name(response["status"]).name
+        response["currency"] = Currency.from_name(response["currency_in"]).name
         response["created_at"] = datetime.datetime.strptime(response["created_at"], "%Y-%m-%d %H:%M:%S")
 
         return PayoutStatus(**response)

@@ -1,7 +1,7 @@
-from cardlinky.types.enums.enum import StrEnum
+from cardlinky.types.enums.enum import Enum
 
 
-class Status(StrEnum):
+class Status(Enum):
     NEW: str = "NEW"
     MODERATING: str = "MODERATING"
     PROCESS: str = "PROCESS"

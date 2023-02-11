@@ -1,7 +1,7 @@
-from cardlinky.types.enums.enum import StrEnum
+from cardlinky.types.enums.enum import Enum
 
 
-class BillType(StrEnum):
+class BillType(Enum):
     """
     Type of payment link shows how many payments it could receive.
     'normal' type means that only one successful payment could be received for this link.
