@@ -8,6 +8,6 @@ class Enum(enum.Enum):
     def from_value(cls, value: str) -> Optional[Enum]:
         value = value.lower()
         for i in cls:
-            if i.value.name.lower() == value:
+            if i.value.lower() == value:
                 return i
         return None
