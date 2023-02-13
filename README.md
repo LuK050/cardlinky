@@ -1,5 +1,5 @@
 # cardlinky
-<a href="https://pypi.org/project/cardlinky/"><img src="https://img.shields.io/pypi/v/cardlinky?style=flat-square"></a> <img src="https://img.shields.io/pypi/pyversions/cardlinky?style=flat-square"> 
+<a href="https://pypi.org/project/cardlinky/"><img src="https://img.shields.io/pypi/v/cardlinky?style=flat-square"></a> <a href="https://pypi.org/project/cardlinky/"><img src="https://img.shields.io/pypi/dm/cardlinky?color=blue&style=flat-square"></a> <img src="https://img.shields.io/pypi/pyversions/cardlinky?style=flat-square"> 
 
 [📘 Official documentation](https://cardlink.link/reference/api)
 
