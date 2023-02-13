@@ -7,5 +7,5 @@ class BillType(Enum):
     'normal' type means that only one successful payment could be received for this link.
     'multi' type means that many payments could be received with one link.
     """
-    NORMAL: str = "NORMAL"
-    MULTI: str = "MULTI"
+    NORMAL: str = "normal"
+    MULTI: str = "multi"
