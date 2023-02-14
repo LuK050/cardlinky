@@ -1,4 +1,5 @@
 import datetime
+from typing import Optional
 from dataclasses import dataclass
 
 from cardlinky.types.enums.status import Status
@@ -18,6 +19,8 @@ class Payment:
     :param account_currency_code: enums.Currency - Account currency
     :param from_card: str - Payer's card
     :param created_at: datetime.datetime - Creation date and time
+    :param error_code: Optional[int] - Error code
+    :param error_message: Optional[str] - Error message
     """
 
     id: str
@@ -30,6 +33,8 @@ class Payment:
     account_currency_code: Currency
     from_card: str
     created_at: datetime.datetime
+    error_code: Optional[int] = None
+    error_message: Optional[str] = None
 
 
 @dataclass

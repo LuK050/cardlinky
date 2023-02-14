@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cardlinky"
-version = "1.6"
+version = "1.6.1"
 description = "Wrapper for the Cardlink API in Python"
 authors = ["LuK050 <volychevk@gmail.com>"]
 license = "MIT"
