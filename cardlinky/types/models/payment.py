@@ -1,13 +1,12 @@
 import datetime
 from typing import Optional
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 from cardlinky.types.enums.status import Status
 from cardlinky.types.enums.currency import Currency
 
 
-@dataclass
-class Payment:
+class Payment(BaseModel):
     """
     :param id: str - Unique payment ID
     :param bill_id: str - Unique bill ID
@@ -37,8 +36,7 @@ class Payment:
     error_message: Optional[str] = None
 
 
-@dataclass
-class PaymentStatus:
+class PaymentStatus(BaseModel):
     """
     :param id: str - Unique payment ID
     :param bill_id: str - Unique bill ID

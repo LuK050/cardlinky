@@ -1,10 +1,9 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 from cardlinky.types.enums.currency import Currency
 
 
-@dataclass
-class Balance:
+class Balance(BaseModel):
     """
     :param currency: Currency - Currency of balance
     :param balance_available: float - Available balance

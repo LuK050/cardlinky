@@ -1,13 +1,12 @@
 import datetime
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 from cardlinky.types.enums.status import Status
 from cardlinky.types.enums.currency import Currency
 from cardlinky.types.enums.bill_type import BillType
 
 
-@dataclass
-class Bill:
+class Bill(BaseModel):
     """
     :param id: str - Unique bill id
     :param status: enums.Status - Bill status
@@ -28,8 +27,7 @@ class Bill:
     created_at: datetime.datetime
 
 
-@dataclass
-class BillCreate:
+class BillCreate(BaseModel):
     """
     :param success: bool - Payment status
     :param link_url: str - Link to the page with QR-code. Example: https://cardlink.link/link/5QWlqB2kKJ
@@ -43,8 +41,7 @@ class BillCreate:
     bill_id: str
 
 
-@dataclass
-class BillStatus:
+class BillStatus(BaseModel):
     """
     :param id: str - Unique bill id
     :param status: enums.Status - Bill status
@@ -68,8 +65,7 @@ class BillStatus:
     success: bool
 
 
-@dataclass
-class BillToggleActivity:
+class BillToggleActivity(BaseModel):
     """
     :param id: str - Unique bill id
     :param active: bool - Bill activity flag

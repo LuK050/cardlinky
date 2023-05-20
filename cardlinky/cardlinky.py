@@ -2,7 +2,6 @@ import datetime
 import requests
 from typing import Optional, MutableMapping, Mapping, Union, Any, List
 
-from cardlinky.types.exceptions import exceptions
 from cardlinky.types.models.balance import Balance
 from cardlinky.types.models.payout import Payout, PayoutStatus
 from cardlinky.types.models.payment import Payment, PaymentStatus
@@ -36,16 +35,9 @@ class Cardlinky:
         if not json["success"]:
             if "errors" in tuple(json.keys()):
                 error = tuple(json["errors"].values())[0][0]
-
-                if error in tuple(exceptions.keys()):
-                    raise exceptions[tuple(json["errors"].values())[0][0]]
-                raise ValueError(error)
             else:
                 error = json["message"]
-
-                if json["message"] in tuple(exceptions.keys()):
-                    raise exceptions[json["message"]]
-                raise ValueError(error)
+            raise requests.exceptions.HTTPError(error)
 
     def _get(self, path: str, json: MutableMapping[str, Any]) -> MutableMapping[str, Any]:
         response = requests.get(

@@ -1,12 +1,11 @@
 import datetime
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 from cardlinky.types.enums.status import Status
 from cardlinky.types.enums.currency import Currency
 
 
-@dataclass
-class Payout:
+class Payout(BaseModel):
     """
     :param id: str - Unique ID of payout
     :param status: enums.Status - Payout status
@@ -26,8 +25,7 @@ class Payout:
     created_at: datetime.datetime
 
 
-@dataclass
-class PayoutStatus:
+class PayoutStatus(BaseModel):
     """
     :param id: str - Unique ID of payout
     :param status: enums.Status - Payout status
