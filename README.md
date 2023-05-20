@@ -54,3 +54,4 @@ pip install cardlinky
 Package  | Version
 -------- | ----------
 `requests` | `>=2.28.2` 
+`pydantic` | `>=4.5.0` 
